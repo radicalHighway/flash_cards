@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Questions.init({
     theme: DataTypes.STRING,
-    question: DataTypes.STRING
+    question: DataTypes.STRING,
+    url: DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'Question',
