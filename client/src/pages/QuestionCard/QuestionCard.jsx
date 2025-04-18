@@ -1,12 +1,12 @@
-import { useParams } from "react-router";
-import { useEffect, useState } from "react";
-import './QuestionCard.css'
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
+import './QuestionCard.css';
 
 export default function Quiz() {
   const { theme } = useParams();
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState([])
+  const [answers, setAnswers] = useState([]);
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
@@ -20,7 +20,7 @@ export default function Quiz() {
         setQuestions(data.data);
       });
   }, [theme]);
-console.log(questions)
+  console.log(questions);
   // При смене вопроса — перемешиваем ответы
   useEffect(() => {
     if (questions.length > 0 && questions[current]) {
@@ -36,7 +36,7 @@ console.log(questions)
   }, [questions, current]);
 
   // Функция перемешивания (Фишер-Йейтс)
-  const shuffleArray = (arr) => {
+  const shuffleArray = arr => {
     const shuffled = [...arr];
     for (let i = shuffled.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -45,7 +45,7 @@ console.log(questions)
     return shuffled;
   };
 
-  const handleAnswerClick = (answer) => {
+  const handleAnswerClick = answer => {
     if (selected !== null) return;
 
     setSelected(answer.id);
@@ -68,12 +68,25 @@ console.log(questions)
   const question = questions[current];
 
   return (
-    <div className="question-card">
+    <div className='question-card'>
+      <div style={{ display: 'flex' }}>
+        <img
+          src={question.url}
+          alt='logo'
+          style={{
+            margin: 'auto',
+            width: '80%',
+            height: 'auto',
+            alignContent: 'center',
+            justifyContent: 'center',
+          }}
+        />
+      </div>
       <h3>{question.question}</h3>
       <p>Очки: {score}</p>
 
       <ul>
-        {shuffledAnswers.map((a) => {
+        {shuffledAnswers.map(a => {
           let bg = 'white';
 
           if (selected !== null) {
@@ -89,16 +102,15 @@ console.log(questions)
               key={a.id}
               onClick={() => handleAnswerClick(a)}
               style={{
-                cursor: "pointer",
-                padding: "10px",
+                cursor: 'pointer',
+                padding: '10px',
                 backgroundColor: bg,
-                border: "1px solid gray",
-                borderRadius: "8px",
-                marginBottom: "10px",
+                border: '1px solid gray',
+                borderRadius: '8px',
+                marginBottom: '10px',
                 pointerEvents: selected !== null ? 'none' : 'auto',
-                transition: "0.2s ease",
-              }}
-            >
+                transition: '0.2s ease',
+              }}>
               {a.answer}
             </li>
           );
