@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "react-router";
 import { useEffect, useState } from "react";
+import './QuestionCard.css'
 
 export default function Quiz() {
   const { theme } = useParams();
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
+  const [answers, setAnswers] = useState([])
   const [score, setScore] = useState(0);
   const [selected, setSelected] = useState(null);
   const [shuffledAnswers, setShuffledAnswers] = useState([]);
@@ -12,18 +14,24 @@ export default function Quiz() {
 
   // Загружаем вопросы по теме
   useEffect(() => {
-    fetch(`http://localhost:3001/questions/theme/${theme}`)
+    fetch(`/api/questions/themes/${theme}`)
       .then(res => res.json())
       .then(data => {
-        setQuestions(data);
+        setQuestions(data.data);
       });
   }, [theme]);
-
+console.log(questions)
   // При смене вопроса — перемешиваем ответы
   useEffect(() => {
     if (questions.length > 0 && questions[current]) {
-      const answers = [...questions[current].answers];
-      setShuffledAnswers(shuffleArray(answers));
+      const question_id = questions[current].id;
+      fetch(`/api/answers/question/${question_id}`)
+        .then(res => res.json())
+        .then(data => {
+          const shuffled = shuffleArray(data.data); // перемешали
+          setAnswers(data.data); // сохранили оригинал (если надо)
+          setShuffledAnswers(shuffled); // сохранили перемешанные
+        });
     }
   }, [questions, current]);
 

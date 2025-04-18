@@ -3,7 +3,7 @@ const questionRouter = require("express").Router()
 
 questionRouter
   .get("/", QuestionController.getAllQuestions)
-  .get("/theme/:theme", QuestionController.getAllQuestionsByTheme)
+  .get("/themes/:theme", QuestionController.getAllQuestionsByTheme)
   .get("/id/:id", QuestionController.getOneQuestionById)
 
 

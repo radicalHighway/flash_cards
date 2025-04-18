@@ -7,7 +7,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         // Все запросы к /api
-        target: 'http://localhost:3000', // Будет перенаправляться на этот адрес
+        target: 'http://localhost:3000/', // Будет перенаправляться на этот адрес
         changeOrigin: true, // Меняет заголовок Origin
       },
     },

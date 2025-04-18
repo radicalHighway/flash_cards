@@ -21,17 +21,19 @@ static async getAllAnswers(req,res){
 
 static async getAllByQuestionId(req,res){
   const {question_id}=req.params;
-  if(!isValidId(id)){
+  console.log(req.params)
+  if(!isValidId(question_id)){
     return res
       .status(400)
       .json(formatResponse(400, `Invalid question ID`))
   }
   try {
+    console.log("====> УУПАЛИ")
 const answers = await AnswerService.getAllById(+question_id)
-if(answers.length){
+if(answers.length === 0){
   return res
   .status(404)
-  .json(formatResponse(404, `Question with id: ${id} not found`))
+  .json(formatResponse(404, `Question with id: ${question_id} not found`))
 }   
 res.status(200).json(formatResponse(200, "Success", answers))
  } catch ({ message }) {

@@ -12,6 +12,9 @@ class AnswerService {
       where: {question_id},
       order: [['id', 'ASC']],
     });
+    console.log("====> УУПАЛИ  НИЖЕ")
+    console.log(answers);
+  
     return answers
   }
 
