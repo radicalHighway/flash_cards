@@ -3,6 +3,7 @@ import './App.css'
 import { createBrowserRouter, RouterProvider } from 'react-router';
 import Root from './app/Root';
 import MainPage from './pages/Main/MainPage';
+import ThemePage from './pages/ThemePage/ThemePage';
 
 
 function App() {
@@ -16,7 +17,12 @@ function App() {
         { index: true, Component: MainPage }, 
         // { path: '/lk', Component: LkPage }, // Личный кабинет
         // { path: '/leaders', Component: LeadersPage }, // Таблица лидеров
-        { path: '/themes', Component: LeadersPage }, 
+        { path: '/themes', Component: ThemePage }, 
+        { path: '/themes/:id', Component: ThemePage },
+        // { path: '/auto', Component: ThemePage }, 
+        // { path: '/movies', Component: ThemePage }, 
+        // { path: '/miscellaneous', Component: ThemePage }, 
+        // { path: '/presedent', Component: ThemePage }, 
       ],
     },
   ]);

@@ -1,0 +1,41 @@
+.footer {
+
+    background-color: #4a6491;
+    color: #ecf0f1;
+    margin-top: auto;
+    padding: 1.5rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 50;
+}
+
+.footer p {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    text-align: center;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+
+
+
+/* Адаптация для мобильных устройств */
+@media (max-width: 768px) {
+    .footer {
+        padding: 1rem;
+    }
+    
+    .footer p {
+        font-size: 0.9rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
